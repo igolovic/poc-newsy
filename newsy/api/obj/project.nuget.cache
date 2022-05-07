@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "gPqi3mS+FgAwbY1b5zN/KBCBDosj3Ev5QyOotuLe3wbgKPldgQhsNNfo5WqE4VMRHVL24Y1iB5qVbCI0yrxNzA==",
+  "success": true,
+  "projectFilePath": "C:\\src\\poc-newsy\\newsy\\api\\api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ivan.Golovic\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Ivan.Golovic\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Ivan.Golovic\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Ivan.Golovic\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Ivan.Golovic\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Ivan.Golovic\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
