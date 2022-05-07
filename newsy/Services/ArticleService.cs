@@ -53,11 +53,11 @@ namespace Services
             return articleDto;
         }
 
-        public async Task<ArticleDto> CreateAsync(List<Guid> authorIds, ArticleForCreationDto articleForCreationDto, CancellationToken cancellationToken = default)
+        public async Task<ArticleDto> CreateAsync(ArticleForCreationDto articleForCreationDto, CancellationToken cancellationToken = default)
         {
             var article = articleForCreationDto.Adapt<Article>();
 
-            article.AuthorIds = authorIds;
+            article.AuthorIds = articleForCreationDto.AuthorIds;
 
             _repositoryManager.ArticleRepository.Insert(article);
 

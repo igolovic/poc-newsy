@@ -7,5 +7,7 @@ namespace Contracts
         public DateTime Created { get; set; }
 
         public string? Content { get; set; }
+        
+        public List<Guid>? AuthorIds { get; set; }
     }
 }
