@@ -41,7 +41,7 @@ namespace Services
 
         public async Task<ArticleDto> GetByIdAsync(Guid articleId, CancellationToken cancellationToken)
         {
-            var article = await _repositoryManager.UserRepository.GetByIdAsync(articleId, cancellationToken);
+            var article = await _repositoryManager.ArticleRepository.GetByIdAsync(articleId, cancellationToken);
 
             if (article is null)
             {
@@ -57,11 +57,21 @@ namespace Services
         {
             var article = articleForCreationDto.Adapt<Article>();
 
-            _repositoryManager.ArticleRepository.Insert(article);
+            var newArticleId = _repositoryManager.ArticleRepository.Insert(article);
 
             await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);
 
-            return article.Adapt<ArticleDto>();
+            var articleDto = article.Adapt<ArticleDto>();
+
+            // Fix ID - due to the NPGSQL problem with fictional column usual ORM mechanism cannot be used here
+            articleDto.Id = newArticleId;
+            List<ArticleUserDto> aarticleUserDto = articleDto.ArticleUser.ToList();
+            for (int i = 0; i < aarticleUserDto.Count; i++)
+                aarticleUserDto[i].ArticleId = newArticleId;
+
+            articleDto.ArticleUser = aarticleUserDto;
+
+            return articleDto;
         }
     }
 }

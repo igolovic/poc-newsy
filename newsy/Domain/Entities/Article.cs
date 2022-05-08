@@ -8,6 +8,6 @@
 
         public string? Content { get; set; }
 
-        public IEnumerable<ArticleUser>? ArticleUser { get; set; }
+        public ICollection<ArticleUser>? ArticleUser { get; set; }
     }
 }

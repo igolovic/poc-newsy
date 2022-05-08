@@ -22,7 +22,6 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Article", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("Created")
@@ -40,7 +39,6 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("FirstName")

@@ -2,7 +2,7 @@ services:
   newsy.db:
     container_name: newsy_db
     environment:
-      POSTGRES_DB: newsy_data_f
+      POSTGRES_DB: newsy_data
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
     image: postgres:13.2

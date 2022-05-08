@@ -44,17 +44,5 @@ namespace Presentation.Controllers
 
             return CreatedAtAction(nameof(GetAccountById), new { authorIds = response.ArticleUser, articleId = response.Id }, response);
         }
-
-        //[HttpGet(Name = "GetWeatherForecast")]
-        //public IEnumerable<ArticleDto> Get()
-        //{
-        //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //    {
-        //        Date = DateTime.Now.AddDays(index),
-        //        TemperatureC = Random.Shared.Next(-20, 55),
-        //        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        //    })
-        //    .ToArray();
-        //}
     }
 }
