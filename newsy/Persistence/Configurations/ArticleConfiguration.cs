@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,6 +18,11 @@ namespace Persistence.Configurations
             builder.Property(article => article.Created).IsRequired();
 
             builder.Property(article => article.Content).HasMaxLength(32500);
+
+            builder.HasMany(article => article.ArticleUser)
+                .WithOne()
+                .HasForeignKey(articleUser => articleUser.ArticleId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

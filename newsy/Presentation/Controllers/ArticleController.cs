@@ -42,7 +42,7 @@ namespace Presentation.Controllers
         {
             var response = await _serviceManager.AccountService.CreateAsync(articleForCreationDto, cancellationToken);
 
-            return CreatedAtAction(nameof(GetAccountById), new { authorIds = response.AuthorIds, articleId = response.Id }, response);
+            return CreatedAtAction(nameof(GetAccountById), new { authorIds = response.ArticleUser, articleId = response.Id }, response);
         }
 
         //[HttpGet(Name = "GetWeatherForecast")]

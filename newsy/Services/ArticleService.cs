@@ -57,8 +57,6 @@ namespace Services
         {
             var article = articleForCreationDto.Adapt<Article>();
 
-            article.AuthorIds = articleForCreationDto.AuthorIds;
-
             _repositoryManager.ArticleRepository.Insert(article);
 
             await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);

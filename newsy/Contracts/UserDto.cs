@@ -9,5 +9,7 @@
         public string? LastName { get; set; }
 
         public string? UserName { get; set; }
+
+        public IEnumerable<ArticleUserDto>? ArticleUser { get; set; }
     }
 }

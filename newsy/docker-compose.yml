@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  newsy.web:
+    image: ${DOCKER_REGISTRY-}api
+    container_name: newsy_web
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports:
+      - 5000:80
+      - 5001:443
+    depends_on:
+      - newsy.db
+
+  newsy.db:
+    image: postgres:13.2
+    container_name: newsy_db
+    environment:
+      - POSTGRES_DB=newsy_data_f
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"

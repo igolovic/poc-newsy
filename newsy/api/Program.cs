@@ -1,6 +1,9 @@
 using Domain.Repositories;
 
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 using Persistence;
 using Persistence.Repositories;
@@ -48,4 +51,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+// Run migration (build first database)
+using (var scope = app.Services.CreateScope())
+{
+    await using RepositoryDbContext dbContext = scope.ServiceProvider.GetRequiredService<RepositoryDbContext>();
+    await dbContext.Database.MigrateAsync();
+}
+await app.RunAsync();
+//app.Run();

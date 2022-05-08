@@ -25,16 +25,14 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Content")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(32500)");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
                     b.HasKey("Id");
-
-                    //b.HasIndex("UserId");
 
                     b.ToTable("Article");
                 });
@@ -57,27 +55,51 @@ namespace Persistence.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("character varying(60)");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
                     b.HasKey("Id");
 
                     b.ToTable("User");
                 });
 
-            //modelBuilder.Entity("Domain.Entities.Article", b =>
-            //    {
-            //        b.HasOne("Domain.Entities.User", null)
-            //            .WithMany("Articles")
-            //            .HasForeignKey("UserId")
-            //            .OnDelete(DeleteBehavior.Cascade)
-            //            .IsRequired();
-            //    });
+            modelBuilder.Entity("Domain.Entities.ArticleUser", b =>
+            {
+                b.Property<Guid>("ArticleId")
+                    .HasColumnType("uuid");
 
-            //modelBuilder.Entity("Domain.Entities.User", b =>
-            //    {
-            //        b.Navigation("Articles");
-            //    });
+                b.Property<Guid>("User_Id")
+                    .HasColumnType("uuid");
+
+                b.HasKey(new string[] { "ArticleId", "User_Id" });
+
+                b.ToTable("ArticleUser");
+            });
+
+            modelBuilder.Entity("Domain.Entities.ArticleUser", b =>
+                {
+                    b.HasOne("Domain.Entities.User", null)
+                        .WithMany("UserArticle")
+                        .HasForeignKey("User_Id")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.Navigation("UserArticle");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ArticleUser", b =>
+            {
+                b.HasOne("Domain.Entities.Article", null)
+                    .WithMany("UserArticle")
+                    .HasForeignKey("ArticleId")
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity("Domain.Entities.Article", b =>
+            {
+                b.Navigation("UserArticle");
+            });
 #pragma warning restore 612, 618
         }
     }

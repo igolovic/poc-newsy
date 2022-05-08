@@ -8,6 +8,6 @@
 
         public string? Content { get; set; }
 
-        public List<Guid>? AuthorIds { get; set; }
+        public IEnumerable<ArticleUser>? ArticleUser { get; set; }
     }
 }

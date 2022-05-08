@@ -15,11 +15,11 @@ namespace Persistence.Repositories
         public UserRepository(RepositoryDbContext dbContext) => _dbContext = dbContext;
 
         public async Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken = default) =>
-            //await _dbContext.Users.Include(x => x.Accounts).ToListAsync(cancellationToken);
-            await _dbContext.Users.ToListAsync(cancellationToken);
+            //await _dbContext.Users.Include(item => item.Accounts).ToListAsync(cancellationToken);
+            await _dbContext.Users.Include(item => item.ArticleUser).ToListAsync(cancellationToken);
 
-        public async Task<User> GetByIdAsync(Guid ownerId, CancellationToken cancellationToken = default) =>
-            //await _dbContext.Users.Include(x => x.Accounts).FirstOrDefaultAsync(x => x.Id == ownerId, cancellationToken);
-            await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == ownerId, cancellationToken);
+        public async Task<User> GetByIdAsync(Guid userId, CancellationToken cancellationToken = default) =>
+            //await _dbContext.Users.Include(item => item.Accounts).FirstOrDefaultAsync(item => item.Id == userId, cancellationToken);
+            await _dbContext.Users.Include(item => item.ArticleUser).FirstOrDefaultAsync(item => item.Id == userId, cancellationToken);
     }
 }

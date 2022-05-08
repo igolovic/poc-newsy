@@ -12,7 +12,7 @@ namespace Persistence.Configurations
 
             builder.HasKey(user => user.Id);
 
-            builder.Property(account => account.Id).ValueGeneratedOnAdd();
+            builder.Property(user => user.Id).ValueGeneratedOnAdd();
 
             builder.Property(user => user.FirstName).HasMaxLength(60).IsRequired();
 
@@ -20,10 +20,10 @@ namespace Persistence.Configurations
 
             builder.Property(user => user.UserName).HasMaxLength(100).IsRequired();
 
-            //builder.HasMany(user => user.)
-            //    .WithOne()
-            //    .HasForeignKey(account => account.UserId)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(user => user.ArticleUser)
+                .WithOne()
+                .HasForeignKey(articleUser => articleUser.User_Id)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

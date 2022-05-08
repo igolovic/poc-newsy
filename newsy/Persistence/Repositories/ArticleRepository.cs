@@ -16,16 +16,14 @@ namespace Persistence.Repositories
         public ArticleRepository(RepositoryDbContext dbContext) => _dbContext = dbContext;
 
         public async Task<IEnumerable<Article>> GetAllAsync(CancellationToken cancellationToken = default) =>
-            await _dbContext.Articles.ToListAsync(cancellationToken);
+            await _dbContext.Articles.Include(item => item.ArticleUser).ToListAsync(cancellationToken);
 
         public async Task<IEnumerable<Article>> GetAllByUserIdAsync(Guid ownerId, CancellationToken cancellationToken = default) =>
-            await _dbContext.Articles.Where(x => x.Id == ownerId).ToListAsync(cancellationToken);
+            await _dbContext.Articles.Include(item => item.ArticleUser).Where(item => item.Id == ownerId).ToListAsync(cancellationToken);
 
-        public async Task<Article> GetByIdAsync(Guid accountId, CancellationToken cancellationToken = default) =>
-            await _dbContext.Articles.FirstOrDefaultAsync(x => x.Id == accountId, cancellationToken);
+        public async Task<Article> GetByIdAsync(Guid articleId, CancellationToken cancellationToken = default) =>
+            await _dbContext.Articles.Include(item => item.ArticleUser).FirstOrDefaultAsync(item => item.Id == articleId, cancellationToken);
 
-        public void Insert(Article account) => _dbContext.Articles.Add(account);
-
-        public void Remove(Article account) => _dbContext.Articles.Remove(account);
+        public void Insert(Article article) => _dbContext.Articles.Add(article);
     }
 }
