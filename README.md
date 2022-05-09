@@ -4,6 +4,7 @@ This is a POC news application consisting of frontend written in Vue.JS which ca
 **Functionality**   
 Retrieval of all articles, articles by user, single article by ID, adding of new article.   
 Retrieval of all users, single user by ID.   
+One article can have multiple authors.
    
 **Prerequisites**   
 Docker installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application, also, applicaiton is hosted in Docker container   
@@ -18,6 +19,7 @@ Run script test-data-insert.sql¸to insert test data for the service.
    
 **Architecture**  
 Chosen pattern is "Clean Architecture" ("Onion Architecture") due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies.   
-Also, a decoupling and Separation of Concerns is achieved by using it.
+Also, a decoupling and Separation of Concerns is achieved by using it.   
+Database consists of three tables Article, User (which are authors of articles), bridging table ArticleUser.
 
 Another project contains UI for listing articles and adding new articles and also uses this web API.
