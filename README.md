@@ -1,7 +1,7 @@
 # poc-newsy
 This is a POC news application consisting of frontend written in Vue.JS which calls web API written in .NET Core, data is retrieved using Entity Framework from a relational database on SQL Server instance. Architecture follows "Clean Architecture" pattern.
    
-**Functionality implemented in web API**   
+**Functionality**   
 Retrieval of all articles, articles by user, single article by ID, adding of new article.   
 Retrieval of all users, single user by ID.   
    
