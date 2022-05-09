@@ -22,4 +22,9 @@ Chosen pattern is "Clean Architecture" ("Onion Architecture") due to its prefere
 Also, a decoupling and Separation of Concerns is achieved by using it.   
 Database consists of three tables Article, User (which are authors of articles), bridging table ArticleUser.
 
-Another project contains UI for listing articles and adding new articles and also uses this web API.
+Project https://github.com/igolovic/poc-newsy-editor-viewer contains UI for listing articles and adding new articles and also uses this web API.   
+   
+**TODO**   
+- full CRUD web API for articles
+- full CRUD web API for users
+- automatic adding of test data for demo database
