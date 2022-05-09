@@ -24,6 +24,11 @@ Database consists of three tables Article, User (which are authors of articles),
 
 Project https://github.com/igolovic/poc-newsy-editor-viewer contains UI for listing articles and adding new articles and also uses this web API.   
    
+**Installation**   
+- make sure Docker is running
+- connect to Docker and on the database run script test-data-insert.sql
+- connect to to Swagger on https://localhost:5001/swagger/index.html
+   
 **TODO**   
 - full CRUD web API for articles
 - full CRUD web API for users
