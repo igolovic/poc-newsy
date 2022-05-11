@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "fc8a7c69-27a0-400b-92da-1ff083f725d5",
+		"name": "newsy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "newsy-api.write",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "newsy-mobile-client",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "verysecretive",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://host.docker.internal:44342/connect/token",
+					"protocol": "http",
+					"host": [
+						"host",
+						"docker",
+						"internal"
+					],
+					"port": "44342",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get articles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkFFNkI5MjZGQjVFQzdCMzQxQkM0RDBCQzREQzA5OEY4IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NTIyMjUxNjMsImV4cCI6MTY1MjIyODc2MywiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM0MiIsImF1ZCI6Im5ld3N5LWFwaSIsImNsaWVudF9pZCI6Im5ld3N5LW1vYmlsZS1jbGllbnQiLCJqdGkiOiJGQUFERENFNzIzNDlFQTIwQTM3OUIyMjFDMDBDMUY5OCIsImlhdCI6MTY1MjIyNTE2Mywic2NvcGUiOlsibmV3c3ktYXBpLndyaXRlIl19.cpb-vD0ZZhJSeotgoiL_ws3JgUlenv3KcIeSEzGQTLzDXUbgctOiYvIiyuWk5Y2-2VB4larRhNT-VvnSD-8L2kDJ4rxbXpfP2m0mphH19O4BfcnUQylXF3nbTIX8Mc7Gbc0ezv5qrSr4ryyOdYftYQEA-ywFRsy8FvJuPTq0ned1jU6c_9lSmLKlqwJ9Vk2NcQP5Ljl-a0iMVO8rl9fI5yoUFGKt47_y7oGHRvgWkz-GK3l8rB3EmWK-FPlgJd7ybTR45UT4iJqOLZeRsYU8XXlqQxhKyuJA1OSo1hNDw-mLBaG97zZEQm8KA4SHvFec4wyOdY39t3q9tBoTdvnLow",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:5001/Article",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Article"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "newsy_api_token",
+			"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkFFNkI5MjZGQjVFQzdCMzQxQkM0RDBCQzREQzA5OEY4IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NTIyMDMxMjMsImV4cCI6MTY1MjIwNjcyMywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNDMiLCJhdWQiOiJuZXdzeS1hcGkiLCJjbGllbnRfaWQiOiJuZXdzeS1tb2JpbGUtY2xpZW50IiwianRpIjoiOEQ4NUQxQzM2MUU0NzEzMjA3ODM2MjhERDkzMkQ5OTQiLCJpYXQiOjE2NTIyMDMxMjIsInNjb3BlIjpbIm5ld3N5LWFwaS53cml0ZSJdfQ.yy6m2sXZtmDypr8NEzpfAWpD-LRUO0BmDpkUyqLg8ZzwOuazjS1Yqnr8expSH7imyp4gM4e-ek7dd7Ui_3hgs3wn9g6nzAy4smJT8DZ723u1FSAitKQdefiVbloF6Tfqoc2iGjj0braaJX1qUMhISjm_g9rSr4fRa4aUksQyKsj9S098PrBba2flfkeiYIolybMpq3sNX6ZpuWXAu-6a9uxq1xiS1f-LME9icauxUq080qfVoKbYrZHimUlN7HrM4iLL9JLLIhur0WawNOH260ljK9wBR801aK-JGdlI8bAPYnoYBktEamGT2lvEfo8GrirMYzcgXFipsx5pYFWQPQ"
+		}
+	]
+}
