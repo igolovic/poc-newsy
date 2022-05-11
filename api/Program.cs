@@ -1,6 +1,8 @@
 
 using Domain.Repositories;
 
+using IdentityModel;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
 
@@ -12,14 +14,18 @@ using Services.Abstractions;
 
 using Web.Middleware;
 
-var allowAnyOrigin = "allowAnyOrigin";
+var corsPolicy = "corsPolicy";
 var builder = WebApplication.CreateBuilder(args);
 
 IdentityModelEventSource.ShowPII = true;
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(allowAnyOrigin, policy => policy.AllowAnyOrigin());
+    options.AddPolicy(corsPolicy, policy => policy.AllowAnyOrigin());
+    //options.AddPolicy(corsPolicy, policy =>
+    //{
+    //    policy.WithOrigins("http://localhost:8080", "https://localhost:8080");
+    //});
 });
 
 builder.Services
@@ -51,11 +57,16 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("newsy-api-scope", policy =>
     {
         policy.RequireAuthenticatedUser();
-        policy.RequireClaim("scope", new string[] { "newsy-api.read", "newsy-api.write" });
+        policy.RequireClaim(JwtClaimTypes.Scope, new string[] { "newsy-api.read", "newsy-api.write" });
     });
 });
 
 var app = builder.Build();
+
+app.UseCookiePolicy(new CookiePolicyOptions
+{
+    MinimumSameSitePolicy = SameSiteMode.Lax
+});
 
 if (app.Environment.IsDevelopment())
 {
@@ -65,7 +76,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-app.UseCors(allowAnyOrigin);
+app.UseCors(corsPolicy);
 app.UseHttpsRedirection();
 app.UseRouting();
 

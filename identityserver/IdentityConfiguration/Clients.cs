@@ -17,26 +17,38 @@ namespace identityserver.IdentityConfiguration
                     ClientSecrets = new List<Secret> {new Secret("verysecretive".Sha256())},
                     AllowedScopes = new List<string> { "newsy-api.read", "newsy-api.write" }
                 },
+
                 new Client
                 {
-                    ClientId = "newsy-editor-viewer-application",
                     ClientName = "Newsy editor-viewer application client",
-                    ClientSecrets = new List<Secret> {new Secret("verysecretive".Sha256())},
+                    ClientId = "newsy-editor-viewer-application",
+                    AccessTokenType = AccessTokenType.Reference,
+                    AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
+                    IdentityTokenLifetime = 300,
 
+                    RequireClientSecret = false,
                     AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris = new List<string> {"https://localhost:44346/signin-oidc"},
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.Email,
-                        "role",
-                        "newsy-api.read",
-                        "newsy-api.write"
-                    },
-
                     RequirePkce = true,
-                    AllowPlainTextPkce = false
+
+                    AllowAccessTokensViaBrowser = true,
+                    RedirectUris = new List<string>
+                    {
+                        "http://localhost:8080",
+                        "http://localhost:8080/callback.html",
+                        "http://localhost:8080/silent-renew.html"
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "http://localhost:8080/",
+                        "http://localhost:8080"
+                    },
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        "http://localhost:8080"
+                    },
+                    AllowedScopes = new List<string> { "newsy-api.read", "newsy-api.write" },
+
+                    ClientSecrets = new List<Secret> {new Secret("verysecretive".Sha256())},
                 }
             };
         }
