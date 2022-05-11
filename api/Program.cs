@@ -1,4 +1,3 @@
-
 using Domain.Repositories;
 
 using IdentityModel;
@@ -21,7 +20,7 @@ IdentityModelEventSource.ShowPII = true;
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(corsPolicy, policy => policy.AllowAnyOrigin());
+    options.AddPolicy(corsPolicy, policy => policy.AllowAnyOrigin().AllowAnyHeader());
     //options.AddPolicy(corsPolicy, policy =>
     //{
     //    policy.WithOrigins("http://localhost:8080", "https://localhost:8080");
