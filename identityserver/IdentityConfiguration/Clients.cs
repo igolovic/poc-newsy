@@ -33,18 +33,18 @@ namespace identityserver.IdentityConfiguration
                     AllowAccessTokensViaBrowser = true,
                     RedirectUris = new List<string>
                     {
-                        "http://localhost:8080",
-                        "http://localhost:8080/callback.html",
-                        "http://localhost:8080/silent-renew.html"
+                        "https://localhost:8080",
+                        "https://localhost:8080/callback.html",
+                        "https://localhost:8080/silent-renew.html"
                     },
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "http://localhost:8080/",
-                        "http://localhost:8080"
+                        "https://localhost:8080/",
+                        "https://localhost:8080"
                     },
                     AllowedCorsOrigins = new List<string>
                     {
-                        "http://localhost:8080"
+                        "https://localhost:8080"
                     },
                     AllowedScopes = new List<string> { "newsy-api.read", "newsy-api.write" },
 

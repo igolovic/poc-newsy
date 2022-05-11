@@ -10,6 +10,14 @@ services:
     ports:
       - 5000:80
       - 5001:443
+    volumes:
+      - ./src/IdentityServer:/root/IdentityServer:cached
+      - ${USERPROFILE}/.aspnet/https:/https/
+    environment:
+      - ASPNETCORE_URLS="https://+;"
+      - ASPNETCORE_HTTPS_PORT=5001
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     depends_on:
       - newsy.db
 
@@ -43,3 +51,11 @@ services:
     ports:
       - 44342:80
       - 44343:443
+    volumes:
+      - ./src/Api:/root/Api:cached
+      - ${USERPROFILE}/.aspnet/https:/https/
+    environment:
+      - ASPNETCORE_URLS="https://+;"
+      - ASPNETCORE_HTTPS_PORT=44343
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx

@@ -1,12 +1,6 @@
 using identityserver.IdentityConfiguration;
 
-//var corsPolicy = "allowAnyOrigin";
 var builder = WebApplication.CreateBuilder(args);
-
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy(corsPolicy, policy => policy.AllowAnyOrigin());
-//});
 
 builder.Services.AddIdentityServer()
     .AddInMemoryClients(Clients.Get())
@@ -20,11 +14,6 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-//app.UseCookiePolicy(new CookiePolicyOptions
-//{
-//    MinimumSameSitePolicy = SameSiteMode.Lax
-//});
-
 if (builder.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -34,5 +23,4 @@ app.UseRouting();
 app.UseIdentityServer();
 app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
 
-//app.UseCors(allowAnyOrigin);
 app.Run();

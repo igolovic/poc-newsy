@@ -47,8 +47,8 @@ builder.Services.AddAuthentication("Bearer")
 .AddIdentityServerAuthentication("Bearer", options =>
 {
     options.ApiName = "newsy-api";
-    options.Authority = "http://host.docker.internal:44342";
-    options.RequireHttpsMetadata = false;
+    options.Authority = "https://host.docker.internal:44343";
+    //options.RequireHttpsMetadata = false;
 });
 
 builder.Services.AddAuthorization(options =>
