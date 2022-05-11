@@ -15,6 +15,6 @@ namespace Domain.Repositories
 
         Task<Article> GetByIdAsync(Guid articleId, CancellationToken cancellationToken = default);
 
-        Guid Insert(Article account);
+        Guid Insert(Article article);
     }
 }

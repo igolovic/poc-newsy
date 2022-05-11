@@ -4,6 +4,6 @@
     {
         IUserService UserService { get; }
 
-        IArticleService AccountService { get; }
+        IArticleService ArticleService { get; }
     }
 }

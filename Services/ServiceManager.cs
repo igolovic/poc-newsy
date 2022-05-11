@@ -8,17 +8,17 @@ namespace Services
 {
     public sealed class ServiceManager : IServiceManager
     {
-        private readonly Lazy<IUserService> _lazyOwnerService;
-        private readonly Lazy<IArticleService> _lazyAccountService;
+        private readonly Lazy<IUserService> _lazyUserService;
+        private readonly Lazy<IArticleService> _lazyArticleService;
 
         public ServiceManager(IRepositoryManager repositoryManager)
         {
-            _lazyOwnerService = new Lazy<IUserService>(() => new UserService(repositoryManager));
-            _lazyAccountService = new Lazy<IArticleService>(() => new ArticleService(repositoryManager));
+            _lazyUserService = new Lazy<IUserService>(() => new UserService(repositoryManager));
+            _lazyArticleService = new Lazy<IArticleService>(() => new ArticleService(repositoryManager));
         }
 
-        public IUserService UserService => _lazyOwnerService.Value;
+        public IUserService UserService => _lazyUserService.Value;
 
-        public IArticleService AccountService => _lazyAccountService.Value;
+        public IArticleService ArticleService => _lazyArticleService.Value;
     }
 }

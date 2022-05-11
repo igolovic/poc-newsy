@@ -34,3 +34,12 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
+
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: identityserver/Dockerfile
+    ports:
+      - 44342:80
+      - 44343:443

@@ -61,6 +61,7 @@ namespace Persistence.Repositories
             var resGrp = from i in res
                          group i by i.Id into g
                          let a = g.First()
+                         orderby a.Created descending
                          select new Article
                          {
                              Id = a.Id,

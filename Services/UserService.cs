@@ -23,25 +23,25 @@ namespace Services
 
         public async Task<IEnumerable<UserDto>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            var owners = await _repositoryManager.UserRepository.GetAllAsync(cancellationToken);
+            var users = await _repositoryManager.UserRepository.GetAllAsync(cancellationToken);
 
-            var ownersDto = owners.Adapt<IEnumerable<UserDto>>();
+            var usersDto = users.Adapt<IEnumerable<UserDto>>();
 
-            return ownersDto;
+            return usersDto;
         }
 
-        public async Task<UserDto> GetByIdAsync(Guid ownerId, CancellationToken cancellationToken = default)
+        public async Task<UserDto> GetByIdAsync(Guid userId, CancellationToken cancellationToken = default)
         {
-            var owner = await _repositoryManager.UserRepository.GetByIdAsync(ownerId, cancellationToken);
+            var users = await _repositoryManager.UserRepository.GetByIdAsync(userId, cancellationToken);
 
-            if (owner is null)
+            if (users is null)
             {
-                throw new UserNotFoundException(ownerId);
+                throw new UserNotFoundException(userId);
             }
 
-            var UserDto = owner.Adapt<UserDto>();
+            var userDto = users.Adapt<UserDto>();
 
-            return UserDto;
+            return userDto;
         }
     }
 }
