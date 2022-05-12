@@ -35,6 +35,8 @@ Application will install into Docker container its own set of certificates neede
 They are provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
 IdentityServer4 enables authentication and authorized access for editor-viewer application and other Javascript/mobile applications.   
 There are two clients supported, one for UI editor-viewer application (https://github.com/igolovic/poc-newsy-editor-viewer), other for any other Javascript/mobile client (can be tested using the Postman requests in from file postman-https-requests-export.zip).   
+   
+Docker containerization required creation and setting up of several cryptographic objects for web API and IdentityServer4 (https://mjarosie.github.io/dev/2020/09/24/running-identityserver4-on-docker-with-https.html).
       
 **Installation**   
 - make sure Docker is running
