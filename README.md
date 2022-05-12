@@ -16,6 +16,8 @@ GIT, Visual Studio 2022, Docker
 Open project in VS and run "Docker Compose" instead of usual "Debug" (Docker must be running), VS starts configured image/container for web API and PostgreSQL.
 Navigate to https://localhost:5001/swagger/index.html to test API, container is also configured to host pg4admin (UI for PostgreSQL) which can be found on http://localhost:5050/browser/ (credentials are in config files in VS).   
 Run script test-data-insert.sql¸to insert test data for the service.   
+Application will install into Docker container its own set of certificates needed for HTTPS (HTTPS is required - HTTP version does not to function properly in IdentityServer4).   
+Authentication and authorization are provided by custom IdentityServer4/OpenID-Connect implementation. There are two clients, one for UI editor-viewer application (https://github.com/igolovic/poc-newsy-editor-viewer), other for any other mobile/javascript client (can be tested using the Postman requests in from file postman-https-requests-export.zip).
    
 **Architecture**  
 Chosen pattern is "Clean Architecture" ("Onion Architecture") due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies.   
@@ -32,4 +34,4 @@ Project https://github.com/igolovic/poc-newsy-editor-viewer contains UI for list
 **TODO**   
 - full CRUD web API for articles
 - full CRUD web API for users
-- automatic adding of test data for demo database
+- automatic adding of test users for demo database
