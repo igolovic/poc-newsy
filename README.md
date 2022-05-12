@@ -6,7 +6,6 @@ Retrieval of all articles, articles by user, single article by ID, adding of new
 Retrieval of all users, single user by ID.   
 One article can have multiple authors.   
    
-
 **Architecture**   
 Chosen pattern is "Clean Architecture" ("Onion Architecture") due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies.   
 Also, a decoupling and Separation of Concerns is achieved by using it.   
@@ -46,3 +45,4 @@ There are two clients supported, one for UI editor-viewer application (https://g
 - full CRUD web API for articles
 - full CRUD web API for users
 - automatic adding of test users for demo database
+- checking of real users from database during OAuth2/OpenID-Connect check instead of test users
