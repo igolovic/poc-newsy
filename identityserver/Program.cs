@@ -2,7 +2,7 @@ using identityserver.IdentityConfiguration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddIdentityServer()
+builder.Services.AddIdentityServer(setup => setup.IssuerUri = "https://host.docker.internal:44343")
     .AddInMemoryClients(Clients.Get())
     .AddInMemoryIdentityResources(Resources.GetIdentityResources())
     .AddInMemoryApiResources(Resources.GetApiResources())

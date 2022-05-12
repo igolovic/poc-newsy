@@ -22,7 +22,7 @@ namespace identityserver.IdentityConfiguration
                 {
                     ClientName = "Newsy editor-viewer application client",
                     ClientId = "newsy-editor-viewer-application",
-                    AccessTokenType = AccessTokenType.Reference,
+                    AccessTokenType = AccessTokenType.Jwt,
                     AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
                     IdentityTokenLifetime = 300,
 

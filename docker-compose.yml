@@ -11,13 +11,16 @@ services:
       - 5000:80
       - 5001:443
     volumes:
-      - ./src/IdentityServer:/root/IdentityServer:cached
-      - ${USERPROFILE}/.aspnet/https:/https/
+      - ./src/Api:/root/Api:cached
+      - ./src/Api/certs:/https/
+      - type: bind # Using a bind volume as only this single file from `certs` directory should end up in the container.
+        source: ./certs/root.cer
+        target: /https-root/root.cer
     environment:
       - ASPNETCORE_URLS="https://+;"
       - ASPNETCORE_HTTPS_PORT=5001
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=a
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/newsy_web.pfx
     depends_on:
       - newsy.db
 
@@ -52,10 +55,13 @@ services:
       - 44342:80
       - 44343:443
     volumes:
-      - ./src/Api:/root/Api:cached
-      - ${USERPROFILE}/.aspnet/https:/https/
+      - ./src/IdentityServer:/root/IdentityServer:cached
+      - ./src/IdentityServer/certs:/https/
+      - type: bind # Using a bind volume as only this single file from `certs` directory should end up in the container.
+        source: ./certs/root.cer
+        target: /https-root/root.cer
     environment:
       - ASPNETCORE_URLS="https://+;"
       - ASPNETCORE_HTTPS_PORT=44343
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=a
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/identityserver.pfx

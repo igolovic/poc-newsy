@@ -9,10 +9,14 @@
     <DockerServiceName>api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="certs\root.cer" />
+    <None Include="certs\root.pfx" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="src\Api\certs\newsy_web.pfx" />
+    <None Include="src\IdentityServer\certs\identityserver.pfx" />
   </ItemGroup>
 </Project>

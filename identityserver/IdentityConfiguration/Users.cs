@@ -19,7 +19,8 @@ namespace identityserver.IdentityConfiguration
                     {
                         new Claim(JwtClaimTypes.Email, "support@newsy.com"),
                         new Claim(JwtClaimTypes.Role, "admin"),
-                        new Claim(JwtClaimTypes.WebSite, "https://news.com")
+                        new Claim(JwtClaimTypes.WebSite, "https://news.com"),
+                        new Claim(JwtClaimTypes.Name, "John Doe"),
                     }
                 },
                 new TestUser
@@ -31,7 +32,7 @@ namespace identityserver.IdentityConfiguration
                     {
                         new Claim(JwtClaimTypes.Email, "db@newsy.com"),
                         new Claim(JwtClaimTypes.Role, "admin"),
-                        new Claim(JwtClaimTypes.WebSite, "https://news.com")
+                        new Claim(JwtClaimTypes.Name, "Danny Boy")
                     }
                 },
             };
