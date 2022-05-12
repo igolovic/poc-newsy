@@ -7,7 +7,7 @@ Retrieval of all users, single user by ID.
 One article can have multiple authors.
    
 **Prerequisites**   
-Docker installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application, also, applicaiton is hosted in Docker container   
+Docker installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application. All web applications (web API, custom written IdentityServer4 application, pg4admin tool) are hosted in Docker container.   
       
 **Development tools**   
 GIT, Visual Studio 2022, Docker   
@@ -19,7 +19,9 @@ Run script test-data-insert.sql¸to insert test data for the service.
 Application will install into Docker container its own set of certificates needed for HTTPS (HTTPS is required - HTTP version does not to function properly in IdentityServer4).   
    
 **Authentication and authorization**   
-They are provided by custom IdentityServer4/OpenID-Connect server implementation. There are two clients supported, one for UI editor-viewer application (https://github.com/igolovic/poc-newsy-editor-viewer), other for any other mobile/javascript client (can be tested using the Postman requests in from file postman-https-requests-export.zip).
+They are provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
+IdentityServer4 enables authentication and authorized access for editor-viewer application and other Javascript/mobile applications.   
+There are two clients supported, one for UI editor-viewer application (https://github.com/igolovic/poc-newsy-editor-viewer), other for any other Javascript/mobile client (can be tested using the Postman requests in from file postman-https-requests-export.zip).   
    
 **Architecture**  
 Chosen pattern is "Clean Architecture" ("Onion Architecture") due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies.   
