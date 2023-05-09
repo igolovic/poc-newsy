@@ -17,10 +17,10 @@ Project https://github.com/igolovic/poc-newsy-editor-viewer contains UI for list
 Docker installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application. All web applications (web API, custom written IdentityServer4 application, pg4admin tool) are hosted in Docker container.   
    
 **Components**   
-poc-newsy web API on https://localhost:5001 (Docker)
+poc-newsy web API on https://localhost:5001 (Docker)  
 poc-newsy IdentityServer4 on https://host.docker.internal:44343 (Docker)  
-pg4admin PostgreSQL UI on http://localhost:5050/browser/ (Docker)
-PostgreSQL database (Docker)
+pg4admin PostgreSQL UI on http://localhost:5050/browser/ (Docker)  
+PostgreSQL database (Docker)  
 
 **Development tools**   
 GIT, Visual Studio 2022, Docker   
