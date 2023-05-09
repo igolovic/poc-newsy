@@ -18,7 +18,7 @@ Docker installed on PC - PostgreSQL Docker image is pulled by Visual Studio and 
    
 **Components**   
 poc-newsy web API on https://localhost:5001 (Docker)
-poc-newsy IdentityServer4 on https://host.docker.internal:44343 (Docker)
+poc-newsy IdentityServer4 on https://host.docker.internal:44343 (Docker)  
 pg4admin PostgreSQL UI on http://localhost:5050/browser/ (Docker)
 PostgreSQL database (Docker)
 
