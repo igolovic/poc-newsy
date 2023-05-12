@@ -1,5 +1,5 @@
 # poc-newsy
-This is a POC news application consisting of frontend written in Vue.JS which calls web API written in .NET Core, data is retrieved using Entity Framework from a relational database on SQL Server instance. Architecture follows "Clean Architecture" pattern.
+This is a backend part of POC news application consisting of web API written in .NET Core, data is retrieved using Entity Framework from a relational database on Postgre SQL instance. Separate Github project available on this Github profile contains application frontend written in Vue.JS which uses Web API from this project.   
 
 **Functionality**   
 Retrieval of all articles, articles by user, single article by ID, adding of new article.   
@@ -7,14 +7,13 @@ Retrieval of all users, single user by ID.
 One article can have multiple authors.   
    
 **Architecture**   
-Chosen pattern is "Clean Architecture" ("Onion Architecture") due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies.   
-Also, a decoupling and Separation of Concerns is achieved by using it.   
+Chosen architectural pattern is "Clean Architecture" ("Onion Architecture") due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies. Decoupling and Separation of Concerns is achieved by using it.   
 Database consists of three tables Article, User (which are authors of articles), bridging table ArticleUser.   
    
 Project https://github.com/igolovic/poc-newsy-editor-viewer contains UI for listing articles and adding new articles and also uses this web API.   
    
 **Prerequisites**   
-Docker installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application. All web applications (web API, custom written IdentityServer4 application, pg4admin tool) are hosted in Docker container.   
+A Docker must be installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application. All web applications (web API, custom written IdentityServer4 application, pg4admin tool) are hosted in Docker container.   
    
 **Components**   
 poc-newsy web API on https://localhost:5001 (Docker)  
@@ -29,12 +28,12 @@ GIT, Visual Studio 2022, Docker
 Open project in VS and run "Docker Compose" instead of usual "Debug" (Docker must be running), VS starts configured image/container for web API and PostgreSQL.
 Navigate to https://localhost:5001/swagger/index.html to test API, container is also configured to host pg4admin (UI for PostgreSQL) which can be found on http://localhost:5050/browser/ (credentials are in config files in VS).   
 Run script test-data-insert.sql¸to insert test data for the service.   
-Application will install into Docker container its own set of certificates needed for HTTPS (HTTPS is required - HTTP version does not to function properly in IdentityServer4).   
+Application will install into the Docker container its own set of certificates needed for HTTPS (HTTPS is required - HTTP version does not to function properly in IdentityServer4).   
    
 **Authentication and authorization**   
 They are provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
 IdentityServer4 enables authentication and authorized access for editor-viewer application and other Javascript/mobile applications.   
-There are two clients supported, one for UI editor-viewer application (https://github.com/igolovic/poc-newsy-editor-viewer), other for any other Javascript/mobile client (can be tested using the Postman requests in from file postman-https-requests-export.zip).   
+There are two clients supported, one for UI editor-viewer application (https://github.com/igolovic/poc-newsy-editor-viewer), other for any other Javascript/mobile client (can be tested using the Postman requests using the file postman-https-requests-export.zip).   
    
 Docker containerization required creation and setting up of several cryptographic objects for web API and IdentityServer4 (https://mjarosie.github.io/dev/2020/09/24/running-identityserver4-on-docker-with-https.html).
       
