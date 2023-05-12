@@ -1,5 +1,5 @@
 # poc-newsy
-This is a backend part of POC news application consisting of web API written in .NET Core, data is retrieved using Entity Framework from a relational database on Postgre SQL instance. Separate Github project available on this Github profile contains application frontend written in Vue.JS which uses Web API from this project.   
+This is a Docker-hosted backend part of the POC news application featuring web API written in .NET Core where data is retrieved using Entity Framework from a relational Postgre SQL database. Separate Github project available on this Github profile contains application frontend written in Vue.JS which uses Web API from this project.   
 
 **Functionality**   
 Retrieval of all articles, articles by user, single article by ID, adding of new article.   
@@ -13,7 +13,7 @@ Database consists of three tables Article, User (which are authors of articles),
 Project https://github.com/igolovic/poc-newsy-editor-viewer contains UI for listing articles and adding new articles and also uses this web API.   
    
 **Prerequisites**   
-A Docker must be installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application. All web applications (web API, custom written IdentityServer4 application, pg4admin tool) are hosted in Docker container.   
+Docker engine must be installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application. All web applications (web API, custom written IdentityServer4 application, pg4admin tool - Postgre admin tool and UI) are hosted in Docker container.   
    
 **Components**   
 poc-newsy web API on https://localhost:5001 (Docker)  
@@ -22,7 +22,7 @@ pg4admin PostgreSQL UI on http://localhost:5050/browser/ (Docker)
 PostgreSQL database (Docker)  
 
 **Development tools**   
-GIT, Visual Studio 2022, Docker   
+GIT, Visual Studio 2022, Docker, PostgreSQL Docker image   
       
 **Operation**   
 Open project in VS and run "Docker Compose" instead of usual "Debug" (Docker must be running), VS starts configured image/container for web API and PostgreSQL.
