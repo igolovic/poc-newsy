@@ -43,7 +43,9 @@ After all certificates are generated (root.cer, root.pfx, newsy_web.pfx, identit
     
 Run the script "test-data-insert.sql" to insert test data.    
    
-6 - To test authentication and data operations you can use example HTTP requests whose names start with "postman-test-*" and execute them in order to (a) first get the token from IdentityServer4 application, and (b) then fill that token into the next request which gets the actual data from the API.   
+6 - To test authentication and data operations you can use Postman application with example HTTP requests from "newsy.postman_collection.json" and execute them in order:   
+(a) "get-token" - to get the token from IdentityServer4 application ("access_token" from reponse)   
+(b) "authenticate-and-get-articles" - fill that token into the next request which gets the actual data from the API   
    
 **Authentication and authorization**   
 It is provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
