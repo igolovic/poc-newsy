@@ -17,18 +17,21 @@ Docker engine must be installed on PC. Container includes following child-contai
    
 **Components**   
 All web applications (web API, custom written IdentityServer4 application, pg4admin tool - Postgre admin tool and UI) are hosted in Docker container:    
+
+![image](https://github.com/user-attachments/assets/eeb1718d-d1c3-4139-a2e9-405c9cc0d2c8)
+
 poc-newsy web API on https://localhost:5001 (Docker)  
-poc-newsy IdentityServer4 on https://host.docker.internal:44343 (Docker)  
 pg4admin PostgreSQL UI on http://localhost:5050/browser/ (Docker)  
+poc-newsy IdentityServer4 on https://host.docker.internal:44343 (Docker)  
 PostgreSQL database (Docker)  
 
 **Development tools**   
 GIT, Visual Studio 2022, Docker, PostgreSQL Docker image   
       
-**Operation**   
+**Operation of projects, database, HTTPS in context of Docker**   
 Open project in VS and run "Docker Compose" instead of usual "Debug" (Docker engien must be installed and running), perform updates and fixes for error that might arrise to the new versions of Docker, Windows, nuget packages which will might have change and get into conflicts or other problems. If needed, regenerate .cer and .pfx certificates for test-CA, API, IdentityServer4 application, this is done by running root-api-identity-certs.ps1 located in the root folder, follow comments in the Powershell script, validity date in the root.cer, used to sign other certificates, must be valid.    
 After eventual errors are fixed,  certificatescopied to container (root.cer, root.pfx, newsy_web.pfx, identityserver.pfx), and database copied and deployed to instance of PostgreSQL, Visual Studio should open website for testing API.    
-At thsi point, all components hosted by Docker container - web API, IdentityServer4 application, PostgreSQL instance hosting database, PostgreSQL-admin - should be running.    
+At this point, all components hosted by Docker container - web API, IdentityServer4 application, PostgreSQL instance hosting database, PostgreSQL-admin - should be running.    
 Pre-existing database should be deployed in the instance and visible through PostgreSQL-admin web application.    
 Navigate to https://localhost:5001/swagger/index.html to test API.     
 pg4admin (UI for PostgreSQL) can be found on http://localhost:5050/browser/ (credentials are in config files in VS).   
