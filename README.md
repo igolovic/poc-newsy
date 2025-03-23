@@ -1,5 +1,5 @@
 # poc-newsy
-This is a Docker-hosted backend part of Proof-Of-Concept news application featuring web API written in .NET Core where data is retrieved using Entity Framework Core from a PostgreSQL database. Authentication is done using the IdentityServer4 custom-written application. Separate Github project available on this Github profile contains application frontend written in Vue.JS which uses Web API from this project.   
+This is a Docker-hosted backend part of POC news application featuring .NET Core RESTful web API, Entity Framework Core, PostgreSQL database, and custom IdentityServer4 application for authentication. Separate Github project available on this Github profile contains application frontend written in Vue.JS which uses Web API from this project.   
 
 **Functionality**   
 Retrieval of all articles, articles by user, single article by ID, adding of new article.   
