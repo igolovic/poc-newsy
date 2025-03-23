@@ -1,5 +1,5 @@
 # poc-newsy
-This is a Docker-hosted backend part of the POC news application featuring web API written in .NET Core where data is retrieved using Entity Framework from a relational Postgre SQL database. Separate Github project available on this Github profile contains application frontend written in Vue.JS which uses Web API from this project.   
+This is a Docker-hosted backend part of the POC news application featuring web API written in .NET Core where data is retrieved using Entity Framework from a relational Postgre SQL database, authentication is achieved using the IdentityServer4 custom-written application. Separate Github project available on this Github profile contains application frontend written in Vue.JS which uses Web API from this project.   
 
 **Functionality**   
 Retrieval of all articles, articles by user, single article by ID, adding of new article.   
@@ -10,12 +10,13 @@ One article can have multiple authors.
 Chosen architectural pattern is "Clean Architecture" ("Onion Architecture") due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies. Decoupling and Separation of Concerns is achieved by using it.   
 Database consists of three tables Article, User (which are authors of articles), bridging table ArticleUser.   
    
-Project https://github.com/igolovic/poc-newsy-editor-viewer contains UI for listing articles and adding new articles and also uses this web API.   
+Project https://github.com/igolovic/poc-newsy-editor-viewer contains VUe.js UI for listing and adding articles. It invokes web API and authenticates as client using IdentityServer4 application.   
    
 **Prerequisites**   
-Docker engine must be installed on PC - PostgreSQL Docker image is pulled by Visual Studio and used to set up database by the application. All web applications (web API, custom written IdentityServer4 application, pg4admin tool - Postgre admin tool and UI) are hosted in Docker container.   
+Docker engine must be installed on PC. Container includes following child-containers: newsy_db (postgres), identityserver (identityserver:dev), api (api:dev). With changing Docker Engine versions and nuget packages it is very likely that after few years this setup will throw various errors. For these errors to be resolved different workarounds might have to be applied. It was shown updating to latest stabile versions of .NET and nuget packages was vital in fixing these errors, also some sytactic  changes to docker-compose.yml were done.    
    
 **Components**   
+All web applications (web API, custom written IdentityServer4 application, pg4admin tool - Postgre admin tool and UI) are hosted in Docker container:    
 poc-newsy web API on https://localhost:5001 (Docker)  
 poc-newsy IdentityServer4 on https://host.docker.internal:44343 (Docker)  
 pg4admin PostgreSQL UI on http://localhost:5050/browser/ (Docker)  
@@ -25,13 +26,17 @@ PostgreSQL database (Docker)
 GIT, Visual Studio 2022, Docker, PostgreSQL Docker image   
       
 **Operation**   
-Open project in VS and run "Docker Compose" instead of usual "Debug" (Docker must be running), VS starts configured image/container for web API and PostgreSQL.
-Navigate to https://localhost:5001/swagger/index.html to test API, container is also configured to host pg4admin (UI for PostgreSQL) which can be found on http://localhost:5050/browser/ (credentials are in config files in VS).   
+Open project in VS and run "Docker Compose" instead of usual "Debug" (Docker engien must be installed and running), perform updates and fixes for error that might arrise to the new versions of Docker, Windows, nuget packages which will might have change and get into conflicts or other problems. If needed, regenerate .cer and .pfx certificates for test-CA, API, IdentityServer4 application, this is done by running root-api-identity-certs.ps1 located in the root folder, follow comments in the Powershell script, validity date in the root.cer, used to sign other certificates, must be valid.    
+After eventual errors are fixed,  certificatescopied to container (root.cer, root.pfx, newsy_web.pfx, identityserver.pfx), and database copied and deployed to instance of PostgreSQL, Visual Studio should open website for testing API.    
+At thsi point, all components hosted by Docker container - web API, IdentityServer4 application, PostgreSQL instance hosting database, PostgreSQL-admin - should be running.    
+Pre-existing database should be deployed in the instance and visible through PostgreSQL-admin web application.    
+Navigate to https://localhost:5001/swagger/index.html to test API.     
+pg4admin (UI for PostgreSQL) can be found on http://localhost:5050/browser/ (credentials are in config files in VS).   
 Run script test-data-insert.sql to insert test data for the service.   
-Application will install into the Docker container its own set of certificates needed for HTTPS (HTTPS is required - HTTP version does not function properly in IdentityServer4).   
+Application should have automatically copied into the Docker container its set of mentioned certificates needed for HTTPS communication between API, IdentityServer4 application and the poc-newsy-editor-viewer. HTTPS is required - HTTP version does not function properly with IdentityServer4.   
    
 **Authentication and authorization**   
-They are provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
+It is provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
 IdentityServer4 enables authentication and authorized access for poc-newsy-editor-viewer application and other Javascript/mobile applications.   
 There are two clients supported, one for UI editor-viewer application (https://github.com/igolovic/poc-newsy-editor-viewer), other for any other Javascript/mobile client.   
 Client functionality can be emulated and tested using the Postman requests with requests I prepared in the file postman-https-requests-export.zip.   
