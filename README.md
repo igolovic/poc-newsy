@@ -43,8 +43,8 @@ After all certificates are generated (root.cer, root.pfx, newsy_web.pfx, identit
     
 Run the script "test-data-insert.sql" to insert test data.    
    
-6 - To test authentication and read or write claims use locally installed Postman with requests that have GET request with HTTP header where key="Authorization" and value="Bearer [value-of-bearer]"
-
+6 - To test authentication and data operations you can use example HTTP requests whose names start with "postman-test-*" and execute them in order to (a) first get the token from IdentityServer4 application, and (b) then fill that token into the next request which gets the actual data from the API.   
+   
 **Authentication and authorization**   
 It is provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
 IdentityServer4 enables authentication and authorized access for poc-newsy-editor-viewer application and other Javascript/mobile applications.   
