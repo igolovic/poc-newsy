@@ -47,6 +47,8 @@ Run the script "test-data-insert.sql" to insert test data.
 (a) "get-token" - to get the token from IdentityServer4 application ("access_token" from reponse)   
 (b) "authenticate-and-get-articles" - fill that token into the next request which gets the actual data from the API   
    
+![image](https://github.com/user-attachments/assets/0c9f2771-236d-4f42-869d-27f409671560)   
+   
 **Authentication and authorization**   
 It is provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
 IdentityServer4 enables authentication and authorized access for poc-newsy-editor-viewer application and other Javascript/mobile applications.   
