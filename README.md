@@ -37,8 +37,14 @@ After all certificates are generated (root.cer, root.pfx, newsy_web.pfx, identit
         
 4 - After eventual errors are fixed, certificates successfully copied, and database deployed to instance of PostgreSQL, Visual Studio should open website for testing API: https://localhost:5001/swagger/index.html to test API.     
     
-5 - Run script test-data-insert.sql to insert test data for the service. pg4admin (UI for PostgreSQL) can be found on http://localhost:5050/browser/ (credentials are in config files in VS).    
+5 - pg4admin (UI for PostgreSQL) can be found on http://localhost:5050/browser/ (admin credentials are in config files in VS) - open it's URL and see if server exists in server group, if not, create one for user named "postgres" with password named "postgres", after that there should be visible dtabase "newsy_data":    
+    
+![image](https://github.com/user-attachments/assets/40b52f5d-eecb-4bd5-9126-a3a5b7a9d1a5)
+    
+Run the script "test-data-insert.sql" to insert test data.    
    
+6 - To test authentication and read or write claims use locally installed Postman with requests that have Authentication header with HTTP GET with headerwhere key="Authorization" and value="Bearer <value-of-bearer>"
+
 **Authentication and authorization**   
 It is provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
 IdentityServer4 enables authentication and authorized access for poc-newsy-editor-viewer application and other Javascript/mobile applications.   
