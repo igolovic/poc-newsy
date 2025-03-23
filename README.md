@@ -18,7 +18,7 @@ With changing Docker Engine versions and nuget packages, it is very likely that 
    
 **Components**   
 All web applications are therefore hosted in Docker container: 
-1 - web API -> in Docker: api (api:dev) -> URL: https://localhost:5001     
+1 - web API -> in Docker: api (api:dev) -> URL: https://localhost:5001/swagger/index.html     
 2 - custom written IdentityServer4 application -> in Docker: identityserver (identityserver:dev) -> URL: https://host.docker.internal:44343    
 3 - PostgreSQL-instance with database -> in Docker: newsy_db (postgres)    
 4 - PostgreSQl UI (pg4admin) -> in DOcker: dpage/pgadmin4:latest (pgadmin4_container) -> URL: http://localhost:5050/browser/    
