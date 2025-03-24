@@ -35,25 +35,26 @@ After all certificates are generated (root.cer, root.pfx, newsy_web.pfx, identit
     
 ![image](https://github.com/user-attachments/assets/4222999f-8afc-4815-82f5-71442ed54717)
         
-4 - After eventual errors are fixed, certificates successfully copied, and database deployed to instance of PostgreSQL, Visual Studio should open website for testing API: https://localhost:5001/swagger/index.html to test API.     
-    
-5 - pg4admin (UI for PostgreSQL) can be found on http://localhost:5050/browser/ (admin credentials are in config files in VS) - open it's URL and see if server exists in server group, if not, create one for user named "postgres" with password named "postgres", after that there should be visible database "newsy_data":    
+4 - pg4admin (UI for PostgreSQL) can be found on http://localhost:5050/browser/ (admin credentials are in config files in VS) - open it's URL and see if server exists in server group, if not, create one for user named "postgres" with password named "postgres", after that there should be visible database "newsy_data":    
     
 ![image](https://github.com/user-attachments/assets/40b52f5d-eecb-4bd5-9126-a3a5b7a9d1a5)
     
 Run the script "test-data-insert.sql" to insert test data.    
    
 6 - To test authentication and data operations you can use Postman application with example HTTP requests from "newsy.postman_collection.json" and execute them in order:   
-(a) "get-token" - to get the token from IdentityServer4 application ("access_token" from reponse)   
-(b) "authenticate-and-get-articles" - fill that token into the next request which gets the actual data from the API   
+(a) "get-token" - to get the token from IdentityServer4 application (copy "access_token" from reponse to paste it in the next step)   
+(b) "authenticate-and-get-articles" - paste the token from previous step and run HTTP request, this should get the actual data from the API   
    
 ![image](https://github.com/user-attachments/assets/0c9f2771-236d-4f42-869d-27f409671560)   
    
 **Authentication and authorization**   
-It is provided by custom IdentityServer4 (OAuth2/OpenID-Connect) server implementation which protects web API on https://localhost:5001.   
-IdentityServer4 enables authentication and authorized access for poc-newsy-editor-viewer application and other Javascript/mobile applications.   
-There are two clients supported, one for UI editor-viewer application (https://github.com/igolovic/poc-newsy-editor-viewer), other for any other Javascript/mobile client.     
-Setup of IdentityServer4-authentication in Docker and related certificates was significantly helped by article: https://mjarosie.github.io/dev/2020/09/24/running-identityserver4-on-docker-with-https.html.        
+Authentication and authorization are provided by custom IdentityServer4 (OAuth2/OpenID-Connect) application which gives tokens to clients. Clients then use tokens to access web API on https://localhost:5001.   
+IdentityServer4 enables authentication and authorized access for following types of clients:    
+    
+1 - poc-newsy-editor-viewer application - used for UI editor-viewer application (frontend application available at https://github.com/igolovic/poc-newsy-editor-viewer)    
+    
+2 - other Javascript/mobile applications     
+Setup of IdentityServer4-authentication in Docker with self-signed certificates was helped by article: https://mjarosie.github.io/dev/2020/09/24/running-identityserver4-on-docker-with-https.html.        
     
 **Development tools**   
 GIT, Visual Studio 2022, Docker, PostgreSQL Docker image.   
