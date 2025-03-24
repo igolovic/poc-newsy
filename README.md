@@ -57,7 +57,7 @@ IdentityServer4 enables authentication and authorized access for following types
 Setup of IdentityServer4-authentication in Docker with self-signed certificates was helped by article: https://mjarosie.github.io/dev/2020/09/24/running-identityserver4-on-docker-with-https.html.        
     
 **Development tools**   
-GIT, Visual Studio 2022, Docker, PostgreSQL Docker image.   
+Visual Studio 2022, Docker, GIT.   
     
 **TODO**   
 - full CRUD web API for articles    
