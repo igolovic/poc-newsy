@@ -1,23 +1,23 @@
 # poc-newsy
 Docker-hosted set of applications representing POC news application made of .NET Core RESTful web API, Entity Framework Core, PostgreSQL database, and custom IdentityServer4 application for authentication. Separate Github project available on this Github profile contains application frontend written in Vue.JS which uses Web API from this project.   
 
-**Functionality**   
+## Functionality
 Retrieval of all articles, articles by user, single article by ID, adding of new article.   
 Retrieval of all users, single user by ID.   
 One article can have multiple authors.   
    
-**Architecture**   
+## Architecture   
 Architectural pattern is "Clean Architecture" ("Onion Architecture, chosen due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies. Decoupling and separation-of-concerns is achieved by using it.    
 Database consists of tables Article, User (represents authors of articles), ArticleUser (bridging table).    
    
 Project https://github.com/igolovic/poc-newsy-editor-viewer contains VUe.js UI for listing and adding articles. It invokes web API and authenticates as client using IdentityServer4 application.   
    
-**Prerequisites**   
+## Prerequisites
 Docker engine must be installed on PC. 
 With changing Docker Engine versions and nuget packages, it is very likely that after few years this setup will throw various errors. For these errors to be resolved different workarounds might have to be applied. Updating to latest stabile versions of .NET and nuget packages was vital in fixing these errors so far, also some syntactic changes to docker-compose.yml were neccessary.    
    
-**Components**   
-All web applications are therefore hosted in Docker container: 
+## Components
+All web applications are therefore hosted in Docker container:    
 1 - web API -> in Docker: api (api:dev) -> URL: https://localhost:5001/swagger/index.html     
 2 - custom written IdentityServer4 application -> in Docker: identityserver (identityserver:dev) -> URL: https://host.docker.internal:44343    
 3 - PostgreSQL-instance with database -> in Docker: newsy_db (postgres)    
@@ -25,7 +25,7 @@ All web applications are therefore hosted in Docker container:
      
 ![image](https://github.com/user-attachments/assets/eeb1718d-d1c3-4139-a2e9-405c9cc0d2c8)
        
-**Installation and troubleshooting of projects, certificates, database in Docker container**   
+## Installation and troubleshooting of projects, certificates, database in Docker container
 1 - Open project in VS and run "Docker Compose" instead of usual "Debug", Docker engine must be installed and running.     
    
 2 - Perform updates and fixes for error that might arrise to the new versions of Docker, Windows, nuget packages which will might have change and get into conflicts or other problems.     
@@ -47,7 +47,7 @@ Run the script "test-data-insert.sql" to insert test data.
    
 ![image](https://github.com/user-attachments/assets/0c9f2771-236d-4f42-869d-27f409671560)   
    
-**Authentication and authorization**   
+## Authentication and authorization
 Authentication and authorization are provided by custom IdentityServer4 (OAuth2/OpenID-Connect) application which gives tokens to clients. Clients then use tokens to access web API on https://localhost:5001.   
 IdentityServer4 enables authentication and authorized access for following types of clients:    
     
@@ -55,11 +55,25 @@ IdentityServer4 enables authentication and authorized access for following types
     
 2 - other Javascript/mobile applications     
 Setup of IdentityServer4-authentication in Docker with self-signed certificates was helped by article: https://mjarosie.github.io/dev/2020/09/24/running-identityserver4-on-docker-with-https.html.        
+
+## Pushing Docker images to Docker Hub repository
+For sharing and testing on other eenvironemtn, namely Linux Debian, images were pushed to DoOcker Hub repository. Commands were:
+Steps:    
     
-**Development tools**   
-Visual Studio 2022, Docker, GIT.   
+1 - on Docker website create repository for images, e.g.: igolovic/poc-newsy-docker-hub-repo    
+     
+2 - in local Docker terminal create Docker "tag", e.g. "latest", in repository: `docker tag [index_digest] domain.com/repo/tag_docker_name:latest`      
+Where [index_digest] is specific for each image and can be found in Docker's UI, e.g.: 07a35a3030ddc8a96c54d3400370fd7340c6753328249b695c1ee148c7d51ffd    
+
+3 - in local Docker terminal create push image to repository with created tag: `docker push igolovic/poc-newsy-docker-hub-repo:latest`
     
-**TODO**   
+    
+## Development tools
+- Docker container, images, web applications and all components were developed on Windows 10, using Hyper-V instead of WSL in Docker (due to obscure error, WSL might be fine for others)    
+- apps were initially produced on: Visual Studio 2022, Docker, GIT   
+- Docker images were successfully ran from Windows 10 / Visual Studio Code installation    
+    
+## TODO
 - full CRUD web API for articles    
 - full CRUD web API for users    
 - automatic adding of test users for demo database ("seed")    
