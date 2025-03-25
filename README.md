@@ -54,25 +54,12 @@ IdentityServer4 enables authentication and authorized access for following types
 1 - poc-newsy-editor-viewer application - used for UI editor-viewer application (frontend application available at https://github.com/igolovic/poc-newsy-editor-viewer)    
     
 2 - other Javascript/mobile applications     
-Setup of IdentityServer4-authentication in Docker with self-signed certificates was helped by article: https://mjarosie.github.io/dev/2020/09/24/running-identityserver4-on-docker-with-https.html.        
-
-## Pushing Docker images to Docker Hub repository
-For sharing and testing on other eenvironemtn, namely Linux Debian, images were pushed to DoOcker Hub repository. Commands were:
-Steps:    
-    
-1 - on Docker website create repository for images, e.g.: igolovic/poc-newsy-docker-hub-repo    
-     
-2 - in local Docker terminal create Docker "tag", e.g. "latest", in repository: `docker tag [index_digest] domain.com/repo/tag_docker_name:latest`      
-Where [index_digest] is specific for each image and can be found in Docker's UI, e.g.: 07a35a3030ddc8a96c54d3400370fd7340c6753328249b695c1ee148c7d51ffd    
-
-3 - in local Docker terminal create push image to repository with created tag: `docker push igolovic/poc-newsy-docker-hub-repo:latest`
-    
+Setup of IdentityServer4-authentication in Docker with self-signed certificates was helped by article: https://mjarosie.github.io/dev/2020/09/24/running-identityserver4-on-docker-with-https.html.           
     
 ## Development tools
-- Docker container, images, web applications and all components were developed on Windows 10, using Hyper-V instead of WSL in Docker (due to obscure error, WSL might be fine for others)    
-- apps were initially produced on: Visual Studio 2022, Docker, GIT   
-- Docker images were successfully ran from Windows 10 / Visual Studio Code installation    
-    
+- applications were last modified and successfully installed and tested on: Windows 11, Visual Studio 2022, Docker, Hyper-V, GIT   
+- during development in March 2025 I was using Hyper-V instead of WSL for Docker to avoid one of obscure errors that were not present during initial development, WSL might be fine for others who had time to deal with the error or have a different setup of comopnents where this error isn't present    
+       
 ## TODO
 - full CRUD web API for articles    
 - full CRUD web API for users    
