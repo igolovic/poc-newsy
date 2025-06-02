@@ -1,7 +1,7 @@
 # poc-newsy
 Docker-hosted fullstack POC news application featuring Vue.js frontend SPA and web API written in .NET Core where data is retrieved using Entity Framework from a relational Postgre SQL database. Frontend is implemented using Vue.js 2.6 with bootstrap-vue for UI.   
-
-**Functionality**   
+  
+## Functionality
 Retrieval of all articles, articles by user, single article by ID, adding of new article.   
 Retrieval of all users, single user by ID.   
 One article can have multiple authors.   
@@ -13,8 +13,8 @@ Frontend is a SPA multi-component application following organization layed out b
 BACKEND   
 Architectural pattern is "Clean Architecture" ("Onion Architecture") due to its preference for abstraction instead of concretion which makes it easy to change e.g. UIs or storage technologies. Decoupling and Separation of Concerns is achieved by using it.   
 Database consists of three tables Article, User (which are authors of articles), bridging table ArticleUser.   
-   
-Project https://github.com/igolovic/poc-newsy-editor-viewer contains UI for listing articles and adding new articles and also uses this web API.   
+      
+Project https://github.com/igolovic/poc-newsy-editor-viewer contains VUe.js UI for listing and adding articles. It invokes web API and authenticates as client using IdentityServer4 application.   
    
 **Prerequisites**   
 Vue.js 2.6 CLI   
